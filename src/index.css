@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --color-paper: #FFFFFF;
+  --color-mist: #F7F7F5;
+  --color-ink: #111111;
+  --color-slate: #666666;
+  --color-hairline: #E8E8E8;
+  --color-signal: #2F3EE0;
+  --color-signal-dim: #EEF0FD;
+
+  --breakpoint-xs: 375px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-hairline);
+  border-radius: 999px;
+}
+
+/* custom cursor */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-ink);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: width .25s ease, height .25s ease, background .25s ease;
+}
+
+@media (max-width: 1024px) {
+  .cursor-dot { display: none; }
+}
+
+/* hide default cursor on desktop when custom cursor active */
+@media (min-width: 1025px) {
+  .cursor-enabled, .cursor-enabled a, .cursor-enabled button {
+    cursor: none;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(-10px) rotate(-3deg); }
+  50% { transform: translateY(10px) rotate(3deg); }
+}
+.animate-float {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
